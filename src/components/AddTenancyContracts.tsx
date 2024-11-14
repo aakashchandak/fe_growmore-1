@@ -29,7 +29,7 @@ const AddTenancyContracts = () => {
     const [propertyList, setPropertyList] = useState<any[]>([]);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-    const [formValues, setFormValues] = useState<{ [key: string]: string }>({
+    const [formValues, setFormValues] = useState<{ [key: string]: any }>({
         numberOfChecks: '',
         startDate: null,
         endDate: null,
@@ -246,7 +246,19 @@ const AddTenancyContracts = () => {
                                                         bgLight
                                                     />
                                                 ) : type === 'dropdown' ? (
-                                                    <Select>
+                                                    <Select
+                                                        key={name}
+                                                        onValueChange={(
+                                                            value
+                                                        ) =>
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: value,
+                                                                })
+                                                            )
+                                                        }
+                                                    >
                                                         <SelectTrigger className='w-[220px] p-3 py-6 text-[16px] text-sonicsilver bg-white border border-[#CCDAFF] outline-none mt-7'>
                                                             <div className='flex items-center'>
                                                                 <SelectValue
@@ -273,12 +285,19 @@ const AddTenancyContracts = () => {
                                                     </Select>
                                                 ) : type === 'date' ? (
                                                     <CustomDatePicker
+                                                        key={name}
                                                         selectedDate={
-                                                            selectedDate
+                                                            formValues[name]
                                                         }
-                                                        onChange={
-                                                            setSelectedDate
-                                                        }
+                                                        onChange={(value) => {
+                                                            const date = value;
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: date,
+                                                                })
+                                                            );
+                                                        }}
                                                         label={label}
                                                         placeholder='Select Date'
                                                     />
@@ -308,7 +327,19 @@ const AddTenancyContracts = () => {
                                                         bgLight
                                                     />
                                                 ) : type === 'dropdown' ? (
-                                                    <Select>
+                                                    <Select
+                                                        key={name}
+                                                        onValueChange={(
+                                                            value
+                                                        ) =>
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: value,
+                                                                })
+                                                            )
+                                                        }
+                                                    >
                                                         <SelectTrigger className='w-[220px] p-3 py-6 text-[16px] text-sonicsilver bg-white border border-[#CCDAFF] outline-none mt-7'>
                                                             <div className='flex items-center'>
                                                                 <SelectValue
@@ -335,12 +366,19 @@ const AddTenancyContracts = () => {
                                                     </Select>
                                                 ) : type === 'date' ? (
                                                     <CustomDatePicker
+                                                        key={name}
                                                         selectedDate={
-                                                            selectedDate
+                                                            formValues[name]
                                                         }
-                                                        onChange={
-                                                            setSelectedDate
-                                                        }
+                                                        onChange={(value) => {
+                                                            const date = value;
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: date,
+                                                                })
+                                                            );
+                                                        }}
                                                         label={label}
                                                         placeholder='Select Date'
                                                     />
@@ -371,12 +409,19 @@ const AddTenancyContracts = () => {
                                                     />
                                                 ) : type === 'date' ? (
                                                     <CustomDatePicker
+                                                        key={name}
                                                         selectedDate={
-                                                            selectedDate
+                                                            formValues[name]
                                                         }
-                                                        onChange={
-                                                            setSelectedDate
-                                                        }
+                                                        onChange={(value) => {
+                                                            const date = value;
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: date,
+                                                                })
+                                                            );
+                                                        }}
                                                         label={label}
                                                         placeholder='Select Date'
                                                     />
@@ -407,10 +452,19 @@ const AddTenancyContracts = () => {
                                                     />
                                                 ) : type === 'date' ? (
                                                     <CustomDatePicker
-                                                        selectedDate={formValues[name] as Date}
-                                                        onChange={
-                                                            setSelectedDate
+                                                        key={name}
+                                                        selectedDate={
+                                                            formValues[name]
                                                         }
+                                                        onChange={(value) => {
+                                                            const date = value;
+                                                            setFormValues(
+                                                                (prevData) => ({
+                                                                    ...prevData,
+                                                                    [name]: date,
+                                                                })
+                                                            );
+                                                        }}
                                                         label={label}
                                                         placeholder='Select Date'
                                                     />
